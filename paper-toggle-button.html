@@ -1,0 +1,43 @@
+<!--
+Copyright 2013 The Toolkitchen Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+
+<polymer-element name="paper-toggle-button" attributes="checked">
+  <template>
+    <link rel="stylesheet" href="paper-toggle-button.css">
+    
+    <div id="toggleContainer">
+      <paper-radio-button id="toggleRadio" checked="{{checked}}"
+          on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}"></paper-radio-button>
+      <div id="toggleBar"></div>
+    </div>
+    
+  </template>
+  <script>
+    Polymer('paper-toggle-button', {
+      checked: false,
+      barWidth: 48,
+      trackStart: function(e) {
+        e.preventTap();
+      },
+      track: function(e) {
+        this.x = Math.min(this.barWidth, 
+            Math.max(0, this.checked ? this.barWidth + e.dx : e.dx));
+        this.$.toggleRadio.classList.add('dragging');
+        this.$.toggleRadio.style.left = this.x + 'px';
+      },
+      trackEnd: function() {
+        this.$.toggleRadio.style.left = null;
+        this.$.toggleRadio.classList.remove('dragging');
+        this.checked = Math.abs(this.x) > this.barWidth / 2;
+        Platform.flush();
+        this.$.toggleRadio.resetInk();
+      }
+    });
+  </script>
+</polymer-element>
