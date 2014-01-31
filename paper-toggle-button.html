@@ -4,33 +4,38 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
 
-<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <polymer-element name="paper-toggle-button" attributes="checked">
+
   <template>
     <link rel="stylesheet" href="paper-toggle-button.css">
     
     <div id="toggleContainer">
-      <paper-radio-button id="toggleRadio" toggleable checked="{{checked}}"
+      <paper-radio-button id="toggleRadio" toggles checked="{{checked}}"
           on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}"></paper-radio-button>
       <div id="toggleBar"></div>
     </div>
     
   </template>
   <script>
+
     Polymer('paper-toggle-button', {
+
       checked: false,
+
       trackStart: function(e) {
         this._w = this.$.toggleBar.offsetLeft + this.$.toggleBar.offsetWidth;
         e.preventTap();
       },
+
       track: function(e) {
         this._x = Math.min(this._w, 
             Math.max(0, this.checked ? this._w + e.dx : e.dx));
         this.$.toggleRadio.classList.add('dragging');
         this.$.toggleRadio.style.left = this._x + 'px';
       },
+
       trackEnd: function() {
         this.$.toggleRadio.style.left = null;
         this.$.toggleRadio.classList.remove('dragging');
@@ -38,6 +43,9 @@ license that can be found in the LICENSE file.
         Platform.flush();
         this.$.toggleRadio.resetInk();
       }
+
     });
+
   </script>
+
 </polymer-element>
