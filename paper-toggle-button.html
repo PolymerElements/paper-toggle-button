@@ -6,17 +6,17 @@ license that can be found in the LICENSE file.
 
 <!--
 /**
- * @module Quantum Paper Elements
- */
-/**
- * paper-toggle-button
+ * @group Quantum Paper Elements
+ *
+ * `paper-toggle-button` provides a ON/OFF switch that user can toggle the state
+ * by tapping or by dragging the swtich.
  *
  * Example:
  *
  *    <paper-toggle-button></paper-toggle-button>
  *
- * @class paper-toggle-button
- * @author The Polymer Authors
+ * @element paper-toggle-button
+ * @homepage github.io
  */
 -->
 
@@ -35,10 +35,18 @@ license that can be found in the LICENSE file.
     </div>
 
   </template>
+  
   <script>
 
     Polymer('paper-toggle-button', {
 
+      /**
+       * Gets or sets the state, `true` is checked and `false` is unchecked.
+       *
+       * @attribute checked
+       * @type boolean
+       * @default false
+       */
       checked: false,
 
       trackStart: function(e) {
