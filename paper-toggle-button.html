@@ -65,7 +65,6 @@ license that can be found in the LICENSE file.
         this.$.toggleRadio.style.left = null;
         this.$.toggleRadio.classList.remove('dragging');
         this.checked = Math.abs(this._x) > this._w / 2;
-        Platform.flush();
         this.$.toggleRadio.resetInk();
       }
 
