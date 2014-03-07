@@ -29,12 +29,13 @@ license that can be found in the LICENSE file.
   left: 0;
   padding: 8px 48px 8px 0;
   margin: -8px -48px -8px 0;
-  -webkit-transition: left linear .08s;
-  transition: left linear .08s;
+  transition: -webkit-transform linear .08s;
+  transition: transform linear .08s;
 }
 
 #toggleRadio[checked] {
-  left: 48px;
+  -webkit-transform: translate3d(48px, 0, 0);
+  transform: translate3d(48px, 0, 0);
   padding: 8px 0 8px 48px;
   margin: -8px 0 -8px -48px;
 }
