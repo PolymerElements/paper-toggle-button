@@ -22,7 +22,7 @@ license that can be found in the LICENSE file.
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
-<polymer-element name="paper-toggle-button" attributes="checked" touch-action="pan-y">
+<polymer-element name="paper-toggle-button" attributes="checked" touch-action="pan-y" role="button" aria-pressed="false" tabindex="0">
 
   <template>
 
@@ -67,6 +67,10 @@ license that can be found in the LICENSE file.
         this.$.toggleRadio.classList.remove('dragging');
         this.checked = Math.abs(this._x) > this._w / 2;
         this.$.toggleRadio.resetInk();
+      },
+
+      checkedChanged: function() {
+        this.setAttribute('aria-pressed', Boolean(this.checked));
       }
 
     });
