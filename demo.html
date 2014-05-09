@@ -1,39 +1,64 @@
 <!doctype html>
 <html>
-  <head>
-    <title>paper-toggle-button</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    
-    <script src="../platform/platform.js"></script>
-    
-    <link rel="import" href="paper-toggle-button.html">
-    
-    <style>
-    
-      body {
-        font-family: Roboto2, 'Helvetica Neue', Helvetica, Arial;
-        margin: 0;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        -webkit-touch-callout: none;
-      }
-      
-      paper-toggle-button {
-        padding: 40px;
-      }
-      
-    </style>
-    
-  </head>
+<head>
+  <title>paper-toggle-button</title>
   
-  <body unresolved>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   
-    <paper-toggle-button></paper-toggle-button>
+  <script src="../platform/platform.js"></script>
+  
+  <link rel="import" href="paper-toggle-button.html">
+  <link rel="import" href="../font-roboto2/roboto2.html">
+  <link rel="import" href="../core-layout/core-layout.html">
+  
+  <style shim-shadowdom>
+  
+    body {
+      font-family: Roboto2, 'Helvetica Neue', Helvetica, Arial;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+    }
     
-  </body>
+    section {
+      width: 200px;
+      padding: 40px;
+    }
+    
+    paper-toggle-button.blue::shadow paper-radio-button[checked]::shadow #ink {
+      color: #4285f4;
+    }
+    
+    paper-toggle-button.blue::shadow paper-radio-button::shadow #onRadio {
+      background-color: #4285f4;
+    }
+    
+  </style>
+  
+</head>
+<body unresolved>
+
+  <section>
+  
+    <core-layout class="core-align-center">
+      <div core-flex>Wi-Fi</div>
+      <paper-toggle-button checked></paper-toggle-button>
+    </core-layout>
+    
+    <br>
+    <br>
+    
+    <core-layout class="core-align-center">
+      <div core-flex>Bluetooth</div>
+      <paper-toggle-button class="blue"></paper-toggle-button>
+    </core-layout>
+    
+  </section>
+  
+</body>
 </html>
