@@ -69,6 +69,12 @@ To change the bar color:
 <script>
 
   Polymer('paper-toggle-button', {
+    
+    /**
+     * Fired when the checked state changes.
+     *
+     * @event change
+     */
 
     /**
      * Gets or sets the state, `true` is checked and `false` is unchecked.
@@ -101,6 +107,7 @@ To change the bar color:
 
     checkedChanged: function() {
       this.setAttribute('aria-pressed', Boolean(this.checked));
+      this.fire('change');
     }
 
   });
