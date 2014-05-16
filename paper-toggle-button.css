@@ -31,6 +31,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   pointer-events: none;
 }
 
+#toggleBar[checked] {
+  background-color: #0f9d58;
+}
+
+#toggleContainer[checked] #checkedBar {
+  width: 100%;
+}
+
 #toggleRadio {
   position: absolute;
   left: 0;

@@ -29,6 +29,12 @@ To change the radio checked color:
       background-color: #4285f4;
     }
     
+To change the bar color for checked state:
+
+    paper-toggle-button::shadow #toggleBar[checked] {
+      background-color: #4285f4;
+    }
+    
 To change the ink color for unchecked state:
 
     paper-toggle-button::shadow paper-radio-button::shadow #ink {
@@ -40,8 +46,8 @@ To change the radio unchecked color:
     paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
       border-color: #b5b5b5;
     }
-    
-To change the bar color:
+
+To change the bar color for unchecked state:
 
     paper-toggle-button::shadow #toggleBar {
       background-color: red;
@@ -60,9 +66,12 @@ To change the bar color:
   <link rel="stylesheet" href="paper-toggle-button.css">
 
   <div id="toggleContainer">
+  
     <paper-radio-button id="toggleRadio" toggles checked="{{checked}}"
         on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}"></paper-radio-button>
-    <div id="toggleBar"></div>
+        
+    <div id="toggleBar" checked?="{{checked}}"></div>
+    
   </div>
 
 </template>
