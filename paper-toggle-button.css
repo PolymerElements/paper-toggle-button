@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: 16px;
   height: 1px;
   width: 32px;
-  background-color: rgba(149, 149, 149, 0.5);
+  background-color: #5a5a5a;
   pointer-events: none;
 }
 
