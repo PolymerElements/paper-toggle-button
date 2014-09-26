@@ -19,13 +19,13 @@ Styling toggle button:
 
 To change the ink color for checked state:
 
-    paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {
+    paper-toggle-button::shadow #ink[checked] {
       color: #4285f4;
     }
     
-To change the radio checked color:
+To change the button checked color:
     
-    paper-toggle-button::shadow paper-radio-button::shadow #onRadio {
+    paper-toggle-button::shadow #toggleButton[checked] {
       background-color: #4285f4;
     }
     
@@ -37,14 +37,14 @@ To change the bar color for checked state:
     
 To change the ink color for unchecked state:
 
-    paper-toggle-button::shadow paper-radio-button::shadow #ink {
+    paper-toggle-button::shadow #ink {
       color: #b5b5b5;
     }
     
 To change the radio unchecked color:
     
-    paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
-      border-color: #b5b5b5;
+    paper-toggle-button::shadow #toggleButton {
+      background-color: #b5b5b5;
     }
 
 To change the bar color for unchecked state:
@@ -60,18 +60,22 @@ To change the bar color for unchecked state:
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
-<polymer-element name="paper-toggle-button" attributes="checked" role="button" aria-pressed="false" tabindex="0">
+<polymer-element name="paper-toggle-button" attributes="checked" role="button" aria-pressed="false" tabindex="0"
+  on-trackstart="{{trackStart}}" on-trackx="{{trackx}}" on-trackend="{{trackEnd}}">
 <template>
 
   <link rel="stylesheet" href="paper-toggle-button.css">
 
+  <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{toggle}}"></core-a11y-keys>
+
   <div id="toggleContainer">
   
     <div id="toggleBar" checked?="{{checked}}"></div>
-  
-    <paper-radio-button id="toggleRadio" toggles checked="{{checked}}" on-change="{{changeAction}}" on-core-change="{{stopPropagation}}"
-        on-trackstart="{{trackStart}}" on-trackx="{{trackx}}" on-trackend="{{trackEnd}}"></paper-radio-button>
-    
+
+    <div id="toggleButton" checked?="{{checked}}">
+      <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{checked}}"></paper-ripple>
+    </div>
+
   </div>
 
 </template>
@@ -99,24 +103,38 @@ To change the bar color for unchecked state:
      * @default false
      */
     checked: false,
+    
+    eventDelegates: {
+      tap: 'toggle'
+    },
+
+    /**
+     * Toggles the state of the the button.
+     *
+     * @method toggle
+     */
+    toggle: function() {
+      this.checked = !this.checked;
+      this.fire('change');
+    },
 
     trackStart: function(e) {
-      this._w = this.$.toggleBar.offsetLeft + this.$.toggleBar.offsetWidth;
+      this._w = this.$.toggleBar.offsetWidth / 2;
       e.preventTap();
     },
 
     trackx: function(e) {
       this._x = Math.min(this._w, 
           Math.max(0, this.checked ? this._w + e.dx : e.dx));
-      this.$.toggleRadio.classList.add('dragging');
-      var s =  this.$.toggleRadio.style;
+      this.$.toggleButton.classList.add('dragging');
+      var s =  this.$.toggleButton.style;
       s.webkitTransform = s.transform = 'translate3d(' + this._x + 'px,0,0)';
     },
 
     trackEnd: function() {
-      var s =  this.$.toggleRadio.style;
+      var s =  this.$.toggleButton.style;
       s.transform = s.webkitTransform = '';
-      this.$.toggleRadio.classList.remove('dragging');
+      this.$.toggleButton.classList.remove('dragging');
       var old = this.checked;
       this.checked = Math.abs(this._x) > this._w / 2;
       if (this.checked !== old) {
@@ -127,15 +145,6 @@ To change the bar color for unchecked state:
     checkedChanged: function() {
       this.setAttribute('aria-pressed', Boolean(this.checked));
       this.fire('core-change');
-    },
-    
-    changeAction: function(e) {
-      e.stopPropagation();
-      this.fire('change');
-    },
-    
-    stopPropagation: function(e) {
-      e.stopPropagation();
     }
 
   });

@@ -17,45 +17,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 #toggleContainer {
   position: relative;
-  width: 64px;
+  width: 32px;
   height: 16px;
 }
 
 #toggleBar {
   position: absolute;
-  top: 8px;
-  left: 16px;
-  height: 1px;
-  width: 32px;
+  height: 100%;
+  width: 100%;
   background-color: #5a5a5a;
+  border-radius: 8px;
   pointer-events: none;
+  opacity: 0.5;
+  transition: background-color linear .08s;
 }
 
 #toggleBar[checked] {
   background-color: #0f9d58;
 }
 
-#toggleContainer[checked] #checkedBar {
-  width: 100%;
-}
-
-#toggleRadio {
+#toggleButton {
   position: absolute;
-  left: 0;
-  padding: 8px 48px 8px 0;
-  margin: -8px -48px -8px 0;
+  top: -2px;
+  left: -2px;
+  height: 20px;
+  width: 20px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.24);
   transition: -webkit-transform linear .08s;
   transition: transform linear .08s;
+  transition: background-color linear .08s;
 }
 
-#toggleRadio[checked] {
-  -webkit-transform: translate(48px, 0);
-  transform: translate(48px, 0);
-  padding: 8px 0 8px 48px;
-  margin: -8px 0 -8px -48px;
-}
-
-#toggleRadio.dragging {
+#toggleButton.dragging {
   -webkit-transition: none;
   transition: none;
+}
+
+#toggleButton[checked] {
+  -webkit-transform: translate(16px, 0);
+  transform: translate(16px, 0);
+  background-color: #0f9d58;
+}
+
+#ink {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  width: 48px;
+  height: 48px;
+  color: #5a5a5a;
+}
+
+#ink[checked] {
+  color: #0f9d58;
 }
