@@ -17,40 +17,38 @@ Example:
 
 Styling toggle button:
 
-To change the ink color for checked state:
+To change the toggle color:
 
-    paper-toggle-button::shadow #ink[checked] {
+    paper-toggle-button::shadow .toggle {
+      background-color: #9c27b0;
+    }
+
+To change the ink color:
+    
+    paper-toggle-button::shadow .toggle-ink {
+      color: #009688;
+    }
+
+To change the checked toggle color:
+
+    paper-toggle-button::shadow [checked] .toggle {
+      background-color: #4285f4;
+    }
+
+To change the checked ink color:
+
+    paper-toggle-button::shadow [checked] .toggle-ink {
       color: #4285f4;
     }
-    
-To change the button checked color:
-    
-    paper-toggle-button::shadow #toggleButton[checked] {
-      background-color: #4285f4;
-    }
-    
-To change the bar color for checked state:
 
-    paper-toggle-button::shadow #toggleBar[checked] {
-      background-color: #4285f4;
-    }
-    
-To change the ink color for unchecked state:
+To change the toggle bar and toggle button colors separately:
 
-    paper-toggle-button::shadow #ink {
-      color: #b5b5b5;
-    }
-    
-To change the radio unchecked color:
-    
-    paper-toggle-button::shadow #toggleButton {
-      background-color: #b5b5b5;
+    paper-toggle-button::shadow .toggle-bar {
+      background-color: #5677fc;
     }
 
-To change the bar color for unchecked state:
-
-    paper-toggle-button::shadow #toggleBar {
-      background-color: red;
+    paper-toggle-button::shadow .toggle-button {
+      background-color: #9c27b0;
     }
 
 @group Paper Elements
@@ -59,21 +57,21 @@ To change the bar color for unchecked state:
 -->
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../core-a11y-keys/core-a11y-keys.html">
 
-<polymer-element name="paper-toggle-button" attributes="checked" role="button" aria-pressed="false" tabindex="0"
-  on-trackstart="{{trackStart}}" on-trackx="{{trackx}}" on-trackend="{{trackEnd}}">
+<polymer-element name="paper-toggle-button" attributes="checked" role="button" aria-pressed="false" tabindex="0">
 <template>
 
   <link rel="stylesheet" href="paper-toggle-button.css">
 
-  <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{toggle}}"></core-a11y-keys>
+  <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{tap}}"></core-a11y-keys>
 
-  <div id="toggleContainer">
+  <div id="toggleContainer" checked?="{{checked}}">
   
-    <div id="toggleBar" checked?="{{checked}}"></div>
+    <div id="toggleBar" class="toggle toggle-bar"></div>
 
-    <div id="toggleButton" checked?="{{checked}}">
-      <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{checked}}"></paper-ripple>
+    <div id="toggleButton" class="toggle toggle-button">
+      <paper-ripple id="ink" class="toggle-ink circle recenteringTouch"></paper-ripple>
     </div>
 
   </div>
@@ -105,15 +103,13 @@ To change the bar color for unchecked state:
     checked: false,
     
     eventDelegates: {
-      tap: 'toggle'
+      tap: 'tap',
+      trackstart: 'trackStart',
+      trackx: 'trackx',
+      trackend: 'trackEnd'
     },
 
-    /**
-     * Toggles the state of the the button.
-     *
-     * @method toggle
-     */
-    toggle: function() {
+    tap: function() {
       this.checked = !this.checked;
       this.fire('change');
     },

@@ -15,6 +15,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   outline: none;
 }
 
+/* Class selectors can be overridden by users. */
+
+.toggle-bar {
+  background-color: #5a5a5a;
+}
+
+.toggle-button {
+  background-color: #f1f1f1;
+}
+
+[checked] .toggle {
+  background-color: #0f9d58;
+}
+
+.toggle-ink {
+  color: #5a5a5a;
+}
+
+[checked] .toggle-ink {
+  color: #0f9d58;
+}
+
+/* ID selectors should not be overriden by users. */
+
 #toggleContainer {
   position: relative;
   width: 32px;
@@ -25,15 +49,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #5a5a5a;
   border-radius: 8px;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.4;
   transition: background-color linear .08s;
-}
-
-#toggleBar[checked] {
-  background-color: #0f9d58;
 }
 
 #toggleButton {
@@ -42,12 +61,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: -2px;
   height: 20px;
   width: 20px;
-  background-color: #f1f1f1;
   border-radius: 50%;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.24);
-  transition: -webkit-transform linear .08s;
-  transition: transform linear .08s;
-  transition: background-color linear .08s;
+  transition: -webkit-transform linear .08s, background-color linear .08s;
+  transition: transform linear .08s, background-color linear .08s;
 }
 
 #toggleButton.dragging {
@@ -55,10 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   transition: none;
 }
 
-#toggleButton[checked] {
+[checked] #toggleButton {
   -webkit-transform: translate(16px, 0);
   transform: translate(16px, 0);
-  background-color: #0f9d58;
 }
 
 #ink {
@@ -67,9 +83,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: -14px;
   width: 48px;
   height: 48px;
-  color: #5a5a5a;
-}
-
-#ink[checked] {
-  color: #0f9d58;
 }
