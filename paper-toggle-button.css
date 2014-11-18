@@ -45,6 +45,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   height: 16px;
 }
 
+#toggleContainer[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 #toggleBar {
   position: absolute;
   height: 100%;

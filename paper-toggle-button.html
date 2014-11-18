@@ -59,14 +59,14 @@ To change the toggle bar and toggle button colors separately:
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../core-a11y-keys/core-a11y-keys.html">
 
-<polymer-element name="paper-toggle-button" attributes="checked" role="button" aria-pressed="false" tabindex="0">
+<polymer-element name="paper-toggle-button" attributes="checked disabled" role="button" aria-pressed="false" tabindex="0">
 <template>
 
   <link rel="stylesheet" href="paper-toggle-button.css">
 
   <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{tap}}"></core-a11y-keys>
 
-  <div id="toggleContainer" checked?="{{checked}}">
+  <div id="toggleContainer" checked?="{{checked}}" disabled?="{{disabled}}">
   
     <div id="toggleBar" class="toggle toggle-bar"></div>
 
@@ -101,7 +101,17 @@ To change the toggle bar and toggle button colors separately:
      * @default false
      */
     checked: false,
-    
+
+    /**
+     * If true, the toggle button is disabled.  A disabled toggle button cannot
+     * be tapped or dragged to change the checked state.
+     *
+     * @attribute disabled
+     * @type boolean
+     * @default false
+     */
+    disabled: false,
+
     eventDelegates: {
       tap: 'tap',
       trackstart: 'trackStart',
