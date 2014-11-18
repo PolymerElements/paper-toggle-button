@@ -120,11 +120,17 @@ To change the toggle bar and toggle button colors separately:
     },
 
     tap: function() {
+      if (this.disabled) {
+        return;
+      }
       this.checked = !this.checked;
       this.fire('change');
     },
 
     trackStart: function(e) {
+      if (this.disabled) {
+        return;
+      }
       this._w = this.$.toggleBar.offsetWidth / 2;
       e.preventTap();
     },
