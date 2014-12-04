@@ -91,4 +91,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: -14px;
   width: 48px;
   height: 48px;
+  pointer-events: none;
 }

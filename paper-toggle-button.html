@@ -71,7 +71,7 @@ To change the toggle bar and toggle button colors separately:
     <div id="toggleBar" class="toggle toggle-bar"></div>
 
     <div id="toggleButton" class="toggle toggle-button">
-      <paper-ripple id="ink" class="toggle-ink circle recenteringTouch"></paper-ripple>
+      <paper-ripple id="ink" class="toggle-ink circle"></paper-ripple>
     </div>
 
   </div>
@@ -113,10 +113,24 @@ To change the toggle bar and toggle button colors separately:
     disabled: false,
 
     eventDelegates: {
+      down: 'downAction',
+      up: 'upAction',
       tap: 'tap',
       trackstart: 'trackStart',
       trackx: 'trackx',
       trackend: 'trackEnd'
+    },
+
+    downAction: function(e) {
+      var rect = this.$.ink.getBoundingClientRect();
+      this.$.ink.downAction({
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      });
+    },
+
+    upAction: function(e) {
+      this.$.ink.upAction();
     },
 
     tap: function() {
