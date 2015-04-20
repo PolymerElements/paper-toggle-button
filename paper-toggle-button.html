@@ -38,9 +38,12 @@ Styling toggle-button:
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 
-/* TODO: This needs to use core-focusable when it's ready. */
+<!-- TODO: This needs to use core-focusable when it's ready. -->
+
 <dom-module id="paper-toggle-button">
+
   <style is="x-style">
     * {
       --paper-toggle-button-unchecked-bar-color: #000000;
@@ -63,140 +66,112 @@ Styling toggle-button:
         <paper-ripple id="ink" class="toggle-ink circle" recenters></paper-ripple>
       </div>
     </div>
+
   </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'paper-toggle-button',
+
+      behaviors: [
+        Polymer.PaperButtonBehavior
+      ],
+
+      // The custom properties shim is currently an opt-in feature.
+      enableCustomStyleProperties: true,
+
+      hostAttributes: {
+        role: 'button',
+        'aria-pressed': 'false',
+        tabindex: 0
+      },
+
+      properties: {
+
+        /**
+         * Fired when the checked state changes due to user interaction.
+         *
+         * @event change
+         */
+
+        /**
+         * Fired when the checked state changes.
+         *
+         * @event iron-change
+         */
+
+        /**
+         * Gets or sets the state, `true` is checked and `false` is unchecked.
+         *
+         * @attribute checked
+         * @type boolean
+         * @default false
+         */
+        checked: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+          observer: 'checkedChanged'
+        }
+
+      },
+
+      listeners: {
+        // TODO(sjmiles): tracking feature disabled until we can control
+        // track/tap interaction with confidence
+        //xtrack: '_ontrack'
+      },
+
+      ready: function() {
+        this.toggles = true;
+      },
+
+      // button-behavior hook
+      _buttonStateChanged: function() {
+        this.checked = this.active;
+      },
+
+      checkedChanged: function(checked) {
+        this.active = this.checked;
+        this.fire('iron-change');
+      },
+
+      _ontrack: function(event) {
+        var track = event.detail;
+        if (track.state === 'start' ) {
+          //this._preventTap = true;
+          this._trackStart(track);
+        } else if (track.state === 'move' ) {
+          this._trackMove(track);
+        } else if (track.state === 'end' ) {
+          this._trackEnd(track);
+        }
+      },
+
+      _trackStart: function(track) {
+        this._w = this.$.toggleBar.offsetWidth / 2;
+        this._startx = track.x;
+      },
+
+      _trackMove: function(track) {
+        var dx = track.x - this._startx;
+        this._x = Math.min(this._w,
+            Math.max(0, this.checked ? this._w + dx : dx));
+        this.$.toggleButton.classList.add('dragging');
+        this.translate3d(this, this._x + 'px', 0, 0);
+      },
+
+      _trackEnd: function(track) {
+        this.$.toggleButton.classList.remove('dragging');
+        this.transform(this, '');
+        this._userActivate(Math.abs(this._x) > this._w / 2);
+      }
+
+    });
+
+  </script>
 
 </dom-module>
 
-<script>
-  Polymer({
-    is: 'paper-toggle-button',
-
-    // The custom properties shim is currently an opt-in feature.
-    enableCustomStyleProperties: true,
-
-    hostAttributes: {
-      role: 'button',
-      'aria-pressed': false,
-      tabindex: 0
-    },
-
-    properties: {
-      /**
-       * Fired when the checked state changes due to user interaction.
-       *
-       * @event change
-       */
-
-      /**
-       * Fired when the checked state changes.
-       *
-       * @event core-change
-       */
-
-      /**
-       * Gets or sets the state, `true` is checked and `false` is unchecked.
-       *
-       * @attribute checked
-       * @type boolean
-       * @default false
-       */
-      checked: {
-        type: Boolean,
-        value: false,
-        reflectToAttribute: true,
-        observer: 'checkedChanged'
-      },
-
-      /**
-       * If true, the user cannot interact with this element.
-       *
-       * @attribute disabled
-       * @type boolean
-       * @default false
-       */
-      disabled: {
-        type: Boolean
-      }
-    },
-
-    listeners: {
-      keydown: 'onKeyDown',
-      mousedown: 'onMouseDown',
-      mouseup: 'onMouseUp',
-      tap: 'onTap',
-      track: 'onTrack'
-    },
-
-    onKeyDown: function(event) {
-      // Enter key.
-      if (event.keyCode === 13) {
-        this.onTap();
-        event.preventDefault();
-      }
-    },
-
-    onMouseDown: function(e) {
-      console.log("onMouseDown", this.checked);
-
-      var rect = this.$.ink.getBoundingClientRect();
-      this.$.ink.mousedownAction({x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2});
-    },
-
-    onMouseUp: function(e) {
-      console.log("onMouseUp", this.checked);
-
-      this.$.ink.mouseupAction();
-    },
-
-    onTap: function() {
-      console.log("onTap");
-      if (this.disabled) {
-        return;
-      }
-      this.checked = !this.checked;
-      this.fire('change');
-    },
-
-    onTrack: function(event) {
-      if (this.disabled) {
-        return;
-      }
-
-      if (event.detail.state === 'start' ) {
-        console.log("onTrackStart");
-
-
-        this._w = this.$.toggleBar.offsetWidth / 2;
-        this._startx = event.detail.x;
-        //e.preventTap();
-      } else if (event.detail.state === 'end' ) {
-        console.log("onTrackEnd");
-
-
-        var s =  this.$.toggleButton.style;
-        s.transform = s.webkitTransform = '';
-        this.$.toggleButton.classList.remove('dragging');
-        var old = this.checked;
-        this.checked = Math.abs(this._x) > this._w / 2;
-        if (this.checked !== old) {
-          this.fire('change');
-        }
-
-      } else if (event.detail.state === 'move' ){
-        var dx = event.detail.x - this._startx;
-        this._x = Math.min(this._w,
-            Math.max(0, this.checked ? this._w + dx : dx));
-
-        this.$.toggleButton.classList.add('dragging');
-        var s =  this.$.toggleButton.style;
-        s.webkitTransform = s.transform = 'translate3d(' + this._x + 'px,0,0)';
-      }
-    },
-
-    checkedChanged: function() {
-      this.setAttribute('aria-pressed', this.checked ? 'true' : 'false');
-      this.fire('core-change');
-    }
-  })
-</script>
