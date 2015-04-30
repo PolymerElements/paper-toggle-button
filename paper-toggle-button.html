@@ -102,6 +102,20 @@ Styling toggle-button:
           value: false,
           reflectToAttribute: true,
           observer: '_checkedChanged'
+        },
+
+        /**
+         * If true, the button toggles the active state with each tap or press
+         * of the spacebar.
+         *
+         * @attribute toggles
+         * @type boolean
+         * @default true
+         */
+        toggles: {
+          type: Boolean,
+          value: true,
+          reflectToAttribute: true
         }
       },
 
@@ -109,10 +123,6 @@ Styling toggle-button:
         // TODO(sjmiles): tracking feature disabled until we can control
         // track/tap interaction with confidence
         //xtrack: '_ontrack'
-      },
-
-      ready: function() {
-        this.toggles = true;
       },
 
       // button-behavior hook
