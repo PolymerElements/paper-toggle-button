@@ -76,6 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.4);
   transition: -webkit-transform linear .08s, background-color linear .08s;
   transition: transform linear .08s, background-color linear .08s;
+  will-change: transform;
 }
 
 #toggleButton.dragging {
@@ -94,5 +95,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: -14px;
   width: 48px;
   height: 48px;
-  pointer-events: none;
 }
