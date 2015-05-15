@@ -1,7 +1,7 @@
 {
   "name": "paper-toggle-button",
   "version": "0.9.1",
-  "description": "A material design toggle button",
+  "description": "A material design toggle button control",
   "authors": [
     "The Polymer Authors"
   ],
