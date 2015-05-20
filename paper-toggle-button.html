@@ -123,6 +123,9 @@ Styling toggle-button:
 
       // button-behavior hook
       _buttonStateChanged: function() {
+        if (this.disabled) {
+          return;
+        } 
         this.checked = this.active;
       },
 
