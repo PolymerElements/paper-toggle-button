@@ -124,12 +124,18 @@ Custom property | Description | Default
         track: '_ontrack'
       },
 
+      ready: function() {
+        this._isReady = true;
+      },
+
       // button-behavior hook
       _buttonStateChanged: function() {
         if (this.disabled) {
           return;
         }
-        this.checked = this.active;
+        if (this._isReady) {
+          this.checked = this.active;
+        }
       },
 
       _checkedChanged: function(checked) {
