@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
-<link rel="import" href="../paper-behaviors/paper-radio-button-behavior.html">
+<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 
 <!--
 `paper-toggle-button` provides a ON/OFF switch that user can toggle the state
@@ -42,7 +42,7 @@ Custom property | Description | Default
   :root {
     --paper-toggle-button-unchecked-bar-color: #000000;
     --paper-toggle-button-unchecked-button-color: var(--paper-grey-50);
-    --paper-toggle-button-unchecked-ink-color: var(--dark-primary-color);
+    --paper-toggle-button-unchecked-ink-color: var(--primary-text-color);
 
     --paper-toggle-button-checked-bar-color: var(--google-green-500);
     --paper-toggle-button-checked-button-color: var(--google-green-500);
@@ -70,7 +70,7 @@ Custom property | Description | Default
       is: 'paper-toggle-button',
 
       behaviors: [
-        Polymer.PaperRadioButtonBehavior
+        Polymer.PaperInkyFocusBehavior
       ],
 
       hostAttributes: {
