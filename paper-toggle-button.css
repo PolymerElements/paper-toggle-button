@@ -16,6 +16,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   pointer-events: none;
 }
 
+:host([noink]) paper-ripple {
+    display: none;
+}
+
 :host(:focus) {
   outline:none;
 }
