@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 
@@ -38,17 +40,6 @@ Custom property | Description | Default
 @hero hero.svg
 @demo demo/index.html
 -->
-<style is="custom-style">
-  :root {
-    --paper-toggle-button-unchecked-bar-color: #000000;
-    --paper-toggle-button-unchecked-button-color: var(--paper-grey-50);
-    --paper-toggle-button-unchecked-ink-color: var(--primary-text-color);
-
-    --paper-toggle-button-checked-bar-color: var(--google-green-500);
-    --paper-toggle-button-checked-button-color: var(--google-green-500);
-    --paper-toggle-button-checked-ink-color: var(--google-green-500);
-  }
-</style>
 
 <dom-module id="paper-toggle-button">
 
