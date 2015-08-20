@@ -72,12 +72,12 @@ Custom property | Description | Default
       }
 
       :host([checked]) .toggle-bar {
-        background-color: var(--paper-toggle-button-checked-bar-color, --google-green-500);
+        background-color: var(--paper-toggle-button-checked-bar-color, --default-primary-color);
         @apply(--paper-toggle-button-checked-bar);
       }
 
       :host([checked]) .toggle-button {
-        background-color: var(--paper-toggle-button-checked-button-color, --google-green-500);
+        background-color: var(--paper-toggle-button-checked-button-color, --default-primary-color);
         @apply(--paper-toggle-button-checked-button);
       }
 
@@ -86,7 +86,7 @@ Custom property | Description | Default
       }
 
       :host([checked]) .toggle-ink {
-        color: var(--paper-toggle-button-checked-ink-color, --google-green-500);
+        color: var(--paper-toggle-button-checked-ink-color, --default-primary-color);
       }
 
       /* ID selectors should not be overriden by users. */
