@@ -23,11 +23,12 @@
     "polymer": "Polymer/polymer#^1.1.0",
     "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
-    "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0"
+    "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
+    "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#^1.0.0"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
-    "web-component-tester": "*",
+    "web-component-tester": "Polymer/web-component-tester#^3.3.0",
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0",

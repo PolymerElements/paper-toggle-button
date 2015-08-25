@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 
 <!--
 `paper-toggle-button` provides a ON/OFF switch that user can toggle the state
@@ -168,7 +169,8 @@ Custom property | Description | Default
       is: 'paper-toggle-button',
 
       behaviors: [
-        Polymer.PaperInkyFocusBehavior
+        Polymer.PaperInkyFocusBehavior,
+        Polymer.IronCheckedElementBehavior
       ],
 
       hostAttributes: {
@@ -188,34 +190,6 @@ Custom property | Description | Default
          *
          * @event iron-change
          */
-        /**
-         * Gets or sets the state, `true` is checked and `false` is unchecked.
-         *
-         * @attribute checked
-         * @type boolean
-         * @default false
-         */
-        checked: {
-          type: Boolean,
-          value: false,
-          reflectToAttribute: true,
-          notify: true,
-          observer: '_checkedChanged'
-        },
-
-        /**
-         * If true, the button toggles the active state with each tap or press
-         * of the spacebar.
-         *
-         * @attribute toggles
-         * @type boolean
-         * @default true
-         */
-        toggles: {
-          type: Boolean,
-          value: true,
-          reflectToAttribute: true
-        }
       },
 
       listeners: {
@@ -234,11 +208,6 @@ Custom property | Description | Default
         if (this._isReady) {
           this.checked = this.active;
         }
-      },
-
-      _checkedChanged: function(checked) {
-        this.active = this.checked;
-        this.fire('iron-change');
       },
 
       _ontrack: function(event) {
