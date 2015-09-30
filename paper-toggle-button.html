@@ -94,7 +94,7 @@ Custom property | Description | Default
         transition: none;
       }
 
-      :host([checked]):not([disabled]) .toggle-bar {
+      :host([checked]:not([disabled])) .toggle-bar {
         opacity: 0.5;
         background-color: var(--paper-toggle-button-checked-bar-color, --default-primary-color);
         @apply(--paper-toggle-button-checked-bar);
@@ -110,7 +110,7 @@ Custom property | Description | Default
         transform: translate(16px, 0);
       }
 
-      :host([checked]):not([disabled]) .toggle-button {
+      :host([checked]:not([disabled])) .toggle-button {
         background-color: var(--paper-toggle-button-checked-button-color, --default-primary-color);
         @apply(--paper-toggle-button-checked-button);
       }
