@@ -12,7 +12,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
-<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 <link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
@@ -170,7 +169,6 @@ Custom property | Description | Default
       is: 'paper-toggle-button',
 
       behaviors: [
-        Polymer.PaperInkyFocusBehavior,
         Polymer.PaperCheckedElementBehavior
       ],
 
@@ -195,20 +193,6 @@ Custom property | Description | Default
 
       listeners: {
         track: '_ontrack'
-      },
-
-      ready: function() {
-        this._isReady = true;
-      },
-
-      // button-behavior hook
-      _buttonStateChanged: function() {
-        if (this.disabled) {
-          return;
-        }
-        if (this._isReady) {
-          this.checked = this.active;
-        }
       },
 
       _ontrack: function(event) {
