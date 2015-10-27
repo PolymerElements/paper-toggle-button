@@ -1,8 +1,8 @@
-paper-toggle-button
+paper-toggle-button [![Build Status](https://travis-ci.org/PolymerElements/paper-toggle-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-toggle-button)
 ===================
 
 `paper-toggle-button` provides a ON/OFF switch that user can toggle the state
-by tapping or by dragging the swtich.
+by tapping or by dragging the switch.
 
 Example:
 
