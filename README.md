@@ -9,7 +9,7 @@ Edit this file, and the bot will squash your changes :)
 
 -->
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-toggle-button)_
+[![Build Status](https://travis-ci.org/undefined/paper-toggle-button.svg?branch=master)](https://travis-ci.org/undefined/paper-toggle-button)_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-toggle-button)_
 
 
 ##&lt;paper-toggle-button&gt;
