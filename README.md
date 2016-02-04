@@ -12,9 +12,9 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/paper-toggle-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-toggle-button)
+[![Build status](https://travis-ci.org/PolymerElements/paper-toggle-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-toggle-button)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-toggle-button)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/paper-toggle-button)_
 
 
 ##&lt;paper-toggle-button&gt;
