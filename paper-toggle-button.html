@@ -115,6 +115,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       :host([disabled]) .toggle-bar {
         background-color: #000;
         opacity: 0.12;
+
+        @apply(--paper-toggle-button-checked-bar);
       }
 
       :host([checked]) .toggle-button {
