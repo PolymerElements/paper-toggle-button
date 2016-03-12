@@ -40,6 +40,8 @@ Custom property | Description | Default
 `--paper-toggle-button-unchecked-button` | Mixin applied to the slider button when the input is not checked | `{}`
 `--paper-toggle-button-checked-bar` | Mixin applied to the slider when the input is checked | `{}`
 `--paper-toggle-button-checked-button` | Mixin applied to the slider button when the input is checked | `{}`
+`--paper-toggle-button-disabled-bar` | Mixin applied to the slider when the input is disabled | `{}`
+`--paper-toggle-button-disabled-button` | Mixin applied to the slider button when the input is disabled | `{}`
 `--paper-toggle-button-label-color` | Label color | `--primary-text-color`
 `--paper-toggle-button-label-spacing` | Spacing between the label and the button | `8px`
 
@@ -113,7 +115,14 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       :host([disabled]) .toggle-bar {
-        background-color: #000;
+        background-color: var(--paper-toggle-button-checked-bar-color, #000);
+        opacity: 0.12;
+
+        @apply(--paper-toggle-button-disabled-bar);
+      }
+
+      :host([checked][disabled]) .toggle-bar {
+        background-color: var(--paper-toggle-button-checked-bar-color, #000);
         opacity: 0.12;
 
         @apply(--paper-toggle-button-checked-bar);
@@ -131,8 +140,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       :host([disabled]) .toggle-button {
-        background-color: #bdbdbd;
+        background-color: var(--paper-toggle-button-checked-button-color, #bdbdbd);
         opacity: 1;
+
+        @apply(--paper-toggle-button-checked-button);
       }
 
       .toggle-ink {
