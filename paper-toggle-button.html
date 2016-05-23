@@ -210,6 +210,12 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         track: '_ontrack'
       },
 
+      attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          this.setScrollDirection('y');
+        });
+      },
+
       _ontrack: function(event) {
         var track = event.detail;
         if (track.state === 'start') {
