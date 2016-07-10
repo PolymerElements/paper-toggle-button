@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../web-component-tester/browser.js"></script>
     <script src="../../test-fixture/test-fixture-mocha.js"></script>
     <script src="../../iron-test-helpers/mock-interactions.js"></script>
+    <script src="../../iron-test-helpers/test-helpers.js"></script>
 
     <link rel="import" href="../../test-fixture/test-fixture.html">
     <link rel="import" href="../paper-toggle-button.html">
@@ -27,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <test-fixture id="Basic">
       <template>
-        <paper-toggle-button id="button"></paper-toggle-button>
+        <paper-toggle-button id="button">Label</paper-toggle-button>
       </template>
     </test-fixture>
 
@@ -68,6 +69,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             assert.isTrue(b1.checked);
             done();
           }, 1);
+        });
+
+        test('label is positioned on the right side by default', function(done) {
+          var el = Polymer.dom(b1.root);
+          forceXIfStamp(el);
+          var firstDiv = el.querySelector('div');
+          assert.isTrue(firstDiv.classList.contains('toggle-container'));
+          assert.ok(el.querySelector('.toggle-label-right-side'), 'Label exists and is on the right side');
+          assert.notOk(el.querySelector('.toggle-label-left-side'), 'Left side label is not present');
+          done();
+        });
+
+        test('label is positioned on the left side when leftSideLabel is true', function(done) {
+          b1.leftSideLabel = true;
+          var el = Polymer.dom(b1.root);
+          setTimeout(function() {
+            forceXIfStamp(el);
+            var firstDiv = el.querySelector('div');
+            assert.isTrue(firstDiv.classList.contains('toggle-label'));
+            assert.isTrue(firstDiv.classList.contains('toggle-label-left-side'));
+            assert.ok(el.querySelector('.toggle-container'), "Toggle button exists and is on the right side");
+            assert.notOk(el.querySelector('.toggle-label-right-side'), 'Right side label is not present');
+            done();
+          });
         });
       });
 
