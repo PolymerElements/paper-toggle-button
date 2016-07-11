@@ -164,18 +164,32 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         position: relative;
         display: inline-block;
         vertical-align: middle;
-        padding-left: var(--paper-toggle-button-label-spacing, 8px);
         pointer-events: none;
         color: var(--paper-toggle-button-label-color, --primary-text-color);
       }
+	  
+      .toggle-label-left-side {
+        padding-right: var(--paper-toggle-button-label-spacing, 8px);
+      }
+	  
+      .toggle-label-right-side {
+        padding-left: var(--paper-toggle-button-label-spacing, 8px);
+      }
+	  
     </style>
 
+    <template is="dom-if" if="[[leftSideLabel]]">
+      <div class="toggle-label toggle-label-left-side"><content></content></div>
+    </template>
+	
     <div class="toggle-container">
       <div id="toggleBar" class="toggle-bar"></div>
       <div id="toggleButton" class="toggle-button"></div>
     </div>
-
-    <div class="toggle-label"><content></content></div>
+	
+    <template is="dom-if" if="[[!leftSideLabel]]">
+      <div class="toggle-label toggle-label-right-side"><content></content></div>
+    </template>
 
   </template>
 
@@ -204,6 +218,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          *
          * @event iron-change
          */
+        /**
+         * Whether to position the label on the left side
+         */
+        leftSideLabel : {
+          type: Boolean,
+          value: false
+        }
       },
 
       listeners: {
