@@ -76,6 +76,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             done();
           }, 1);
         });
+
+        test('set the label position', function(done) {
+          assert.isTrue(b1._testLabelPosition('right', b1.labelPosition));
+          assert.isFalse(b1._testLabelPosition('left', b1.labelPosition));
+          b1.labelPosition = 'left';
+          assert.isFalse(b1._testLabelPosition('right', b1.labelPosition));
+          assert.isTrue(b1._testLabelPosition('left', b1.labelPosition));
+          done();
+        });
       });
 
       suite('a11y', function() {

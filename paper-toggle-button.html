@@ -178,6 +178,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         color: var(--paper-toggle-button-label-color, --primary-text-color);
       }
 
+      .toggle-label.left {
+        padding: 0 var(--paper-toggle-button-label-spacing, 8px) 0 0;
+      }
+
       /* invalid state */
       :host([invalid]) .toggle-bar {
         background-color: var(--paper-toggle-button-invalid-bar-color, --error-color);
@@ -192,12 +196,18 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
     </style>
 
+    <template is="dom-if" if="[[_testLabelPosition('left', labelPosition)]]">
+      <div class="toggle-label left"><content></content></div>
+    </template>
+
     <div class="toggle-container">
       <div id="toggleBar" class="toggle-bar"></div>
       <div id="toggleButton" class="toggle-button"></div>
     </div>
 
-    <div class="toggle-label"><content></content></div>
+    <template is="dom-if" if="[[_testLabelPosition('right', labelPosition)]]">
+      <div class="toggle-label"><content></content></div>
+    </template>
 
   </template>
 
@@ -216,6 +226,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       properties: {
+        /**
+         * The position of the label.
+         */
+        labelPosition: {
+          type: String,
+          value: 'right',
+        },
         /**
          * Fired when the checked state changes due to user interaction.
          *
@@ -280,6 +297,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ripple.setAttribute('recenters', '');
         ripple.classList.add('circle', 'toggle-ink');
         return ripple;
+      },
+
+      _testLabelPosition(position, labelPosition) {
+        return position === labelPosition;
       }
 
     });
