@@ -59,10 +59,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
 <dom-module id="paper-toggle-button">
   <template strip-whitespace>
-
     <style>
       :host {
-        display: inline-block;
         @apply(--layout-horizontal);
         @apply(--layout-center);
         @apply(--paper-font-common-base);
@@ -198,7 +196,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     </div>
 
     <div class="toggle-label"><content></content></div>
-
   </template>
 
   <script>
@@ -281,7 +278,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ripple.classList.add('circle', 'toggle-ink');
         return ripple;
       }
-
     });
   </script>
 </dom-module>
