@@ -18,6 +18,7 @@
   },
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/PolymerElements/paper-toggle-button",
+  "main": "paper-toggle-button.html",
   "ignore": [],
   "dependencies": {
     "polymer": "Polymer/polymer#2.0-preview",
@@ -30,9 +31,8 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#2.0-preview",
-    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
-    "web-component-tester": "v6.0.0-prerelease.5",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#v1"
+    "web-component-tester": "^6.0.0-prerelease.6",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.1"
   },
   "variants": {
     "1.x": {
@@ -47,16 +47,9 @@
         "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
         "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
         "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0",
-        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
       }
     }
-  },
-  "main": "paper-toggle-button.html",
-  "resolutions": {
-    "test-fixture": "^2.0.0",
-    "polymer": "2.0-preview",
-    "webcomponentsjs": "v1"
   }
 }
