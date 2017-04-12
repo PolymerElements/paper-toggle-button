@@ -150,13 +150,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         pointer-events: none;
         color: var(--paper-toggle-button-unchecked-ink-color, --primary-text-color);
 
-        @apply(--paper-toggle-button-unchecked-ink);
+        @apply --paper-toggle-button-unchecked-ink;
       }
 
       :host([checked]) .toggle-ink {
         color: var(--paper-toggle-button-checked-ink-color, --primary-color);
 
-        @apply(--paper-toggle-button-checked-ink);
+        @apply --paper-toggle-button-checked-ink;
       }
 
       .toggle-container {
