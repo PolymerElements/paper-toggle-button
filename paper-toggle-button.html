@@ -233,7 +233,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       attached: function() {
-        Polymer.RenderStatus.afterNextRender(this, function() {
+        Polymer.RenderStatus.afterNextRender(() => {
           Polymer.Gestures.setTouchAction(this, 'pan-y');
         });
       },
