@@ -1,4 +1,5 @@
 [![Build status](https://travis-ci.org/PolymerElements/paper-toggle-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-toggle-button)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/paper-toggle-button)
 
 ## &lt;paper-toggle-button&gt;
 
