@@ -197,7 +197,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       <div id="toggleButton" class="toggle-button"></div>
     </div>
 
-    <div class="toggle-label"><slot></slot></div>
+    <div class="toggle-label">[[label]]<slot></slot></div>
 
   </template>
 
@@ -216,6 +216,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       properties: {
+        /**
+         * Provide a label
+         */
+        label: {
+         type: String,
+         reflectToAttribute: true
+        },
         /**
          * Fired when the checked state changes due to user interaction.
          *
