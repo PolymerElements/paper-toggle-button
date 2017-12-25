@@ -226,10 +226,16 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          *
          * @event iron-change
          */
+        readonly: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        }
       },
 
       listeners: {
-        track: '_ontrack'
+        track: '_ontrack',
+        tap: '_ontap'
       },
 
       attached: function() {
@@ -280,6 +286,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ripple.setAttribute('recenters', '');
         ripple.classList.add('circle', 'toggle-ink');
         return ripple;
+      },
+      
+      _ontap: function(event) {
+        if (this.readonly) {
+            event.preventDefault();
+            return;
+        }
       }
 
     });
