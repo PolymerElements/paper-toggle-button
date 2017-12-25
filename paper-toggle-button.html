@@ -234,8 +234,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       listeners: {
-        track: '_ontrack',
-        tap: '_ontap'
+        track: '_ontrack'
       },
 
       attached: function() {
@@ -288,11 +287,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         return ripple;
       },
       
-      _ontap: function(event) {
+      _tapHandler: function(event) {
         if (this.readonly) {
-            event.preventDefault();
-            return;
+          event.preventDefault();
+          return;
         }
+        var spr = this.behaviors.find(function(b) { return b._tapHandler; });
+        if (spr) spr._tapHandler.apply(this, arguments);
       }
 
     });
