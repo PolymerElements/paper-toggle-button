@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-toggle-button",
+  "private": true,
+  "description": "A material design toggle button control",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-toggle-button"
+  },
+  "license": "BSD-3-Clause"
+}
