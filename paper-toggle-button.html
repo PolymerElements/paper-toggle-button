@@ -229,13 +229,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          */
       },
 
-      listeners: {
-        track: '_ontrack'
-      },
-
       attached: function() {
         Polymer.RenderStatus.afterNextRender(this, function() {
           Polymer.Gestures.setTouchAction(this, 'pan-y');
+          this.addEventListener('track', this._ontrack.bind(this));
         });
       },
 
