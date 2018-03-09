@@ -52,7 +52,6 @@
  * In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
  */
 interface PaperToggleButtonElement extends Polymer.Element, Polymer.PaperCheckedElementBehavior {
-  hostAttributes: object|null;
   attached(): void;
 
   /**
