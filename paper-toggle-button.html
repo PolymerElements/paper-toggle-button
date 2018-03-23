@@ -227,6 +227,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
          *
          * @event iron-change
          */
+        readonly: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        }
       },
 
       listeners: {
@@ -281,6 +286,15 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ripple.setAttribute('recenters', '');
         ripple.classList.add('circle', 'toggle-ink');
         return ripple;
+      },
+      
+      _tapHandler: function(event) {
+        if (this.readonly) {
+          event.preventDefault();
+          return;
+        }
+        var spr = this.behaviors.find(function(b) { return b._tapHandler; });
+        if (spr) spr._tapHandler.apply(this, arguments);
       }
 
     });
