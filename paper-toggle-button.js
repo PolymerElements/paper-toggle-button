@@ -1,4 +1,4 @@
-<!--
+/**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -6,15 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../paper-styles/color.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
-
-<!--
+*/
+/**
 Material design: [Switch](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-switch)
 
 `paper-toggle-button` provides a ON/OFF switch that user can toggle the state
@@ -55,10 +48,27 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 @element paper-toggle-button
 @hero hero.svg
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="paper-toggle-button">
-  <template strip-whitespace>
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/paper-styles/color.js';
+import '@polymer/paper-styles/default-theme.js';
+import { PaperCheckedElementBehavior } from '@polymer/paper-behaviors/paper-checked-element-behavior.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { setTouchAction } from '@polymer/polymer/lib/utils/gestures.js';
+import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="paper-toggle-button">
+  <template strip-whitespace="">
 
     <style>
       :host {
@@ -201,80 +211,81 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
   </template>
 
-  <script>
-    Polymer({
-      is: 'paper-toggle-button',
+  
+</dom-module>`;
 
-      behaviors: [Polymer.PaperCheckedElementBehavior],
+document.head.appendChild($_documentContainer.content);
+Polymer({
+  is: 'paper-toggle-button',
 
-      /** @private */
-      hostAttributes: {role: 'button', 'aria-pressed': 'false', tabindex: 0},
+  behaviors: [PaperCheckedElementBehavior],
 
-      properties: {
-          /**
-           * Fired when the checked state changes due to user interaction.
-           *
-           * @event change
-           */
-          /**
-           * Fired when the checked state changes.
-           *
-           * @event iron-change
-           */
-      },
+  /** @private */
+  hostAttributes: {role: 'button', 'aria-pressed': 'false', tabindex: 0},
 
-      listeners: {track: '_ontrack'},
+  properties: {
+      /**
+       * Fired when the checked state changes due to user interaction.
+       *
+       * @event change
+       */
+      /**
+       * Fired when the checked state changes.
+       *
+       * @event iron-change
+       */
+  },
 
-      attached: function() {
-        Polymer.RenderStatus.afterNextRender(this, function() {
-          Polymer.Gestures.setTouchAction(this, 'pan-y');
-        });
-      },
+  listeners: {track: '_ontrack'},
 
-      _ontrack: function(event) {
-        var track = event.detail;
-        if (track.state === 'start') {
-          this._trackStart(track);
-        } else if (track.state === 'track') {
-          this._trackMove(track);
-        } else if (track.state === 'end') {
-          this._trackEnd(track);
-        }
-      },
-
-      _trackStart: function(track) {
-        this._width = this.$.toggleBar.offsetWidth / 2;
-        /*
-         * keep an track-only check state to keep the dragging behavior smooth
-         * while toggling activations
-         */
-        this._trackChecked = this.checked;
-        this.$.toggleButton.classList.add('dragging');
-      },
-
-      _trackMove: function(track) {
-        var dx = track.dx;
-        this._x = Math.min(
-            this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
-        this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
-        this._userActivate(this._x > (this._width / 2));
-      },
-
-      _trackEnd: function(track) {
-        this.$.toggleButton.classList.remove('dragging');
-        this.transform('', this.$.toggleButton);
-      },
-
-      // customize the element's ripple
-      _createRipple: function() {
-        this._rippleContainer = this.$.toggleButton;
-        var ripple = Polymer.PaperRippleBehavior._createRipple();
-        ripple.id = 'ink';
-        ripple.setAttribute('recenters', '');
-        ripple.classList.add('circle', 'toggle-ink');
-        return ripple;
-      }
-
+  attached: function() {
+    afterNextRender(this, function() {
+      setTouchAction(this, 'pan-y');
     });
-  </script>
-</dom-module>
+  },
+
+  _ontrack: function(event) {
+    var track = event.detail;
+    if (track.state === 'start') {
+      this._trackStart(track);
+    } else if (track.state === 'track') {
+      this._trackMove(track);
+    } else if (track.state === 'end') {
+      this._trackEnd(track);
+    }
+  },
+
+  _trackStart: function(track) {
+    this._width = this.$.toggleBar.offsetWidth / 2;
+    /*
+     * keep an track-only check state to keep the dragging behavior smooth
+     * while toggling activations
+     */
+    this._trackChecked = this.checked;
+    this.$.toggleButton.classList.add('dragging');
+  },
+
+  _trackMove: function(track) {
+    var dx = track.dx;
+    this._x = Math.min(
+        this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+    this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
+    this._userActivate(this._x > (this._width / 2));
+  },
+
+  _trackEnd: function(track) {
+    this.$.toggleButton.classList.remove('dragging');
+    this.transform('', this.$.toggleButton);
+  },
+
+  // customize the element's ripple
+  _createRipple: function() {
+    this._rippleContainer = this.$.toggleButton;
+    var ripple = PaperRippleBehavior._createRipple();
+    ripple.id = 'ink';
+    ripple.setAttribute('recenters', '');
+    ripple.classList.add('circle', 'toggle-ink');
+    return ripple;
+  }
+
+});
