@@ -8,16 +8,17 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 import '@polymer/polymer/polymer-legacy.js';
-
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/color.js';
 import '@polymer/paper-styles/default-theme.js';
-import { PaperCheckedElementBehavior } from '@polymer/paper-behaviors/paper-checked-element-behavior.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+
+import {PaperCheckedElementBehavior} from '@polymer/paper-behaviors/paper-checked-element-behavior.js';
+import {PaperRippleBehavior} from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {setTouchAction} from '@polymer/polymer/lib/utils/gestures.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-import { setTouchAction } from '@polymer/polymer/lib/utils/gestures.js';
-import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
+
 const template = html`
 
     <style>
