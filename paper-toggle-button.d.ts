@@ -47,6 +47,7 @@
  * `--paper-toggle-button-checked-ink` | Mixin applied to the ripple when the input is checked | `{}`
  * `--paper-toggle-button-label-color` | Label color | `--primary-text-color`
  * `--paper-toggle-button-label-spacing` | Spacing between the label and the button | `8px`
+ * `--paper-toggle-button-button-container-min-width` | Minimum width of the container for the bar and the button | `36px`
  *
  * This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
  * In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
