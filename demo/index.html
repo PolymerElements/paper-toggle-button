@@ -16,15 +16,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../paper-styles/demo-pages.html">
-    <link rel="import" href="../paper-toggle-button.html">
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '@polymer/iron-demo-helpers/demo-snippet.js';
+      import '@polymer/paper-styles/demo-pages.js';
+      import '../paper-toggle-button.js';
+    </script>
   </head>
   <body unresolved>
-    <custom-style>
+    <script type="module">
+      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+      const template = html`<custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .vertical-section-container {
           max-width: 500px;
@@ -83,6 +86,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-toggle-button checked class="pink">Toggle</paper-toggle-button>
         </template>
       </demo-snippet>
-    </div>
+    </div>`;
+
+      document.body.appendChild(template.content);
+    </script>
   </body>
 </html>

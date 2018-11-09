@@ -14,13 +14,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>paper-toggle-button basic tests</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="../../test-fixture/test-fixture-mocha.js"></script>
-    <script src="../../iron-test-helpers/mock-interactions.js"></script>
-
-    <link rel="import" href="../../test-fixture/test-fixture.html">
-    <link rel="import" href="../paper-toggle-button.html">
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
 
   </head>
   <body>
@@ -31,7 +26,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </test-fixture>
 
-    <script>
+    <script type="module">
+      import '@polymer/iron-test-helpers/mock-interactions.js';
+      import '@polymer/test-fixture/test-fixture.js';
+      import '../paper-toggle-button.js';
+      import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
+      import {a11ySuite} from 'wct-browser-legacy/a11ySuite.js';
       suite('defaults', function() {
         var b1;
 
@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('set scroll direction', function(done) {
-          Polymer.RenderStatus.afterNextRender(b1, function() {
+          afterNextRender(b1, function() {
             assert.equal(b1.__polymerGesturesTouchAction, 'pan-y');
             done();
           });
