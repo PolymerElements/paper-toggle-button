@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('vertical align of container and label are equal', function(done) {
-          Polymer.RenderStatus.afterNextRender(b1, function() {
+          afterNextRender(b1, function() {
             assert.equal(
                 b1.$$('.toggle-container').style['vertical-align'],
                 b1.$$('.toggle-label').style['vertical-align']);
