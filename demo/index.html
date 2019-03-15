@@ -37,6 +37,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-left: 10px;
           margin-right: 10px;
         }
+
+        div[dir="rtl"] {
+          width: 100%;
+          display: flex;
+        }
       </style>
     </custom-style>
 
@@ -48,6 +53,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-toggle-button checked>Toggle</paper-toggle-button>
           <paper-toggle-button disabled>Disabled</paper-toggle-button>
           <paper-toggle-button invalid>Invalid</paper-toggle-button>
+        </template>
+      </demo-snippet>
+
+      <h3>Toggle buttons can be set RTL</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <paper-toggle-button dir="rtl">Toggle</paper-toggle-button>
+          <paper-toggle-button dir="rtl" checked>Toggle</paper-toggle-button>
+          <paper-toggle-button dir="rtl" disabled>Disabled</paper-toggle-button>
+          <paper-toggle-button dir="rtl" invalid>Invalid</paper-toggle-button>
         </template>
       </demo-snippet>
 
