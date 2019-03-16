@@ -280,8 +280,6 @@ Polymer({
           this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
     }
 
-    console.log(this._isRtl, this._x, dx, this._trackChecked)
-
     this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
 
     if (this._isRtl) {
