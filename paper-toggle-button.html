@@ -59,7 +59,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
 <dom-module id="paper-toggle-button">
   <template strip-whitespace>
-
     <style>
       :host {
         display: inline-block;
@@ -93,6 +92,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         position: absolute;
         top: -3px;
         left: 0;
+        right: auto;
         height: 20px;
         width: 20px;
         border-radius: 50%;
@@ -103,6 +103,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         background-color: var(--paper-toggle-button-unchecked-button-color, var(--paper-grey-50));
 
         @apply --paper-toggle-button-unchecked-button;
+      }
+
+      :host(:dir(rtl)) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"]) .toggle-button{
+        right: 0;
+        left: auto;
       }
 
       .toggle-button.dragging {
@@ -125,6 +132,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       :host([checked]) .toggle-button {
         -webkit-transform: translate(16px, 0);
         transform: translate(16px, 0);
+      }
+
+      :host(:dir(rtl)):host([checked]) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"][checked]) .toggle-button {
+        -webkit-transform: translate(-16px, 0);
+        transform: translate(-16px, 0);
       }
 
       :host([checked]:not([disabled])) .toggle-button {
@@ -226,6 +240,15 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       listeners: {track: '_ontrack'},
 
       attached: function() {
+        // Shady DOM workaround. Will not update if page updates direction
+        const compStyle = window.getComputedStyle(this);
+        const dir = compStyle.direction;
+        this._isRtl = dir === 'rtl';
+
+        if (this._isRtl) {
+          this.setAttribute('dir', 'rtl');
+        }
+
         Polymer.RenderStatus.afterNextRender(this, function() {
           Polymer.Gestures.setTouchAction(this, 'pan-y');
         });
@@ -254,10 +277,20 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       _trackMove: function(track) {
         var dx = track.dx;
-        this._x = Math.min(
-            this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+        if (this._isRtl) {
+          this._x = Math.max(
+            -this._width, Math.min(0, this._trackChecked ? -this._width + dx : dx));
+        } else {
+          this._x = Math.min(
+              this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+        }
+
         this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
-        this._userActivate(this._x > (this._width / 2));
+        if (this._isRtl) {
+          this._userActivate(this._x < (-this._width / 2));
+        } else {
+          this._userActivate(this._x > (this._width / 2));
+        }
       },
 
       _trackEnd: function(track) {
