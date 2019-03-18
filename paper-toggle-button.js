@@ -110,7 +110,9 @@ Polymer({
         @apply --paper-toggle-button-unchecked-button;
       }
 
-      :host(:dir(rtl)) .toggle-button {
+      :host(:dir(rtl)) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"]) .toggle-button {
         right: 0;
         left: auto;
       }
@@ -137,7 +139,9 @@ Polymer({
         transform: translate(16px, 0);
       }
 
-      :host(:dir(rtl)):host([checked]) .toggle-button {
+      :host(:dir(rtl)):host([checked]) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"][checked]) .toggle-button {
         -webkit-transform: translate(-16px, 0);
         transform: translate(-16px, 0);
       }
