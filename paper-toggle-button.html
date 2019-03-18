@@ -239,13 +239,15 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       listeners: {track: '_ontrack'},
 
-      attached: function() {
-        // Shady DOM workaround. Will not update if page updates direction
-        const compStyle = window.getComputedStyle(this);
-        const dir = compStyle.direction;
-        this._isRtl = dir === 'rtl';
+      calculateIsRtl: function() {
+        var compStyle = window.getComputedStyle(this);
+        var dir = compStyle.direction;
+        return dir === 'rtl';
+      },
 
-        if (this._isRtl) {
+      attached: function() {
+        var isRtl = this.calculateIsRtl();
+        if (isRtl) {
           this.setAttribute('dir', 'rtl');
         }
 
@@ -266,6 +268,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       _trackStart: function(track) {
+        this._isRtl = this.calculateIsRtl();
         this._width = this.$.toggleBar.offsetWidth / 2;
         /*
          * keep an track-only check state to keep the dragging behavior smooth

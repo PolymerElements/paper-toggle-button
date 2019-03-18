@@ -62,6 +62,7 @@ interface PaperToggleButtonElement extends Polymer.PaperCheckedElementBehavior, 
    * customize the element's ripple
    */
   _createRipple(): any;
+  calculateIsRtl(): any;
   _ontrack(event: any): void;
   _trackStart(track: any): void;
   _trackMove(track: any): void;
