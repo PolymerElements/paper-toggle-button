@@ -240,7 +240,7 @@ Polymer({
 
   listeners: {track: '_ontrack'},
 
-  calculateIsRtl: function() {
+  __calculateIsRtl: function() {
     const compStyle = window.getComputedStyle(this);
     const dir = compStyle.direction;
     return dir === 'rtl';
@@ -264,7 +264,7 @@ Polymer({
   },
 
   _trackStart: function(track) {
-    this._isRtl = this.calculateIsRtl()
+    this._isRtl = this.__calculateIsRtl()
     this._width = this.$.toggleBar.offsetWidth / 2;
     /*
      * keep an track-only check state to keep the dragging behavior smooth
