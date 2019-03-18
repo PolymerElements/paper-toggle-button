@@ -239,14 +239,14 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       listeners: {track: '_ontrack'},
 
-      calculateIsRtl: function() {
+      __calculateIsRtl: function() {
         var compStyle = window.getComputedStyle(this);
         var dir = compStyle.direction;
         return dir === 'rtl';
       },
 
       attached: function() {
-        var isRtl = this.calculateIsRtl();
+        var isRtl = this.__calculateIsRtl();
         if (isRtl) {
           this.setAttribute('dir', 'rtl');
         }
