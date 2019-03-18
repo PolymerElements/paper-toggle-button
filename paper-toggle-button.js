@@ -97,6 +97,7 @@ Polymer({
         position: absolute;
         top: -3px;
         left: 0;
+        right: auto;
         height: 20px;
         width: 20px;
         border-radius: 50%;
@@ -107,6 +108,13 @@ Polymer({
         background-color: var(--paper-toggle-button-unchecked-button-color, var(--paper-grey-50));
 
         @apply --paper-toggle-button-unchecked-button;
+      }
+
+      :host(:dir(rtl)) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"]) .toggle-button {
+        right: 0;
+        left: auto;
       }
 
       .toggle-button.dragging {
@@ -129,6 +137,13 @@ Polymer({
       :host([checked]) .toggle-button {
         -webkit-transform: translate(16px, 0);
         transform: translate(16px, 0);
+      }
+
+      :host(:dir(rtl)):host([checked]) .toggle-button,
+      /* Shady DOM workaround */
+      :host([dir="rtl"][checked]) .toggle-button {
+        -webkit-transform: translate(-16px, 0);
+        transform: translate(-16px, 0);
       }
 
       :host([checked]:not([disabled])) .toggle-button {
@@ -225,6 +240,12 @@ Polymer({
 
   listeners: {track: '_ontrack'},
 
+  __calculateIsRtl: function() {
+    const compStyle = window.getComputedStyle(this);
+    const dir = compStyle.direction;
+    return dir === 'rtl';
+  },
+
   attached: function() {
     afterNextRender(this, function() {
       setTouchAction(this, 'pan-y');
@@ -243,6 +264,7 @@ Polymer({
   },
 
   _trackStart: function(track) {
+    this._isRtl = this.__calculateIsRtl()
     this._width = this.$.toggleBar.offsetWidth / 2;
     /*
      * keep an track-only check state to keep the dragging behavior smooth
@@ -254,10 +276,22 @@ Polymer({
 
   _trackMove: function(track) {
     var dx = track.dx;
-    this._x = Math.min(
-        this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+
+    if (this._isRtl) {
+      this._x = Math.max(
+        -this._width, Math.min(0, this._trackChecked ? -this._width + dx : dx));
+    } else {
+      this._x = Math.min(
+          this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+    }
+
     this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
-    this._userActivate(this._x > (this._width / 2));
+
+    if (this._isRtl) {
+      this._userActivate(this._x < (-this._width / 2));
+    } else {
+      this._userActivate(this._x > (this._width / 2));
+    }
   },
 
   _trackEnd: function(track) {
