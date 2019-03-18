@@ -8,6 +8,10 @@
  *   paper-toggle-button.html
  */
 
+
+// tslint:disable:variable-name Describing an API that's defined elsewhere.
+// tslint:disable:no-any describes the API as best we are able today
+
 /// <reference path="../polymer/types/polymer.d.ts" />
 /// <reference path="../iron-flex-layout/iron-flex-layout.d.ts" />
 /// <reference path="../paper-styles/color.d.ts" />
