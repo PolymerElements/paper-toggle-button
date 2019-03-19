@@ -247,6 +247,11 @@ Polymer({
   },
 
   attached: function() {
+    var isRtl = this.__calculateIsRtl();
+    if (isRtl) {
+      this.setAttribute('dir', 'rtl');
+    }
+
     afterNextRender(this, function() {
       setTouchAction(this, 'pan-y');
     });
