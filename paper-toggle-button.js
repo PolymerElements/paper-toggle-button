@@ -56,13 +56,12 @@ Custom property | Description | Default
 This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
 In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
 
-@group Paper Elements
 @element paper-toggle-button
 @demo demo/index.html
 */
 Polymer({
   is: 'paper-toggle-button',
-
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -246,6 +245,7 @@ Polymer({
     return dir === 'rtl';
   },
 
+  /** @override */
   attached: function() {
     var isRtl = this.__calculateIsRtl();
     if (isRtl) {
@@ -314,6 +314,7 @@ Polymer({
     return ripple;
   },
 
+  /** @override */
   registered() {
     this._template.setAttribute('strip-whitespace', '');
   }
