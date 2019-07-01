@@ -179,6 +179,7 @@ Polymer({
 
       .toggle-container {
         display: inline-block;
+        vertical-align: middle;
         position: relative;
         width: 36px;
         height: 14px;

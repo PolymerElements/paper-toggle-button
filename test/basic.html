@@ -76,6 +76,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             done();
           }, 1);
         });
+
+        test('vertical align of container and label are equal', function(done) {
+          afterNextRender(b1, function() {
+            assert.equal(
+                b1.$$('.toggle-container').style['vertical-align'],
+                b1.$$('.toggle-label').style['vertical-align']);
+            done();
+          });
+        });
       });
 
       suite('a11y', function() {
