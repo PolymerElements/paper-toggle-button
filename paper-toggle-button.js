@@ -161,7 +161,7 @@ Polymer({
 
       :host([disabled]) .toggle-button {
         background-color: var(--paper-toggle-button-unchecked-button-color, #bdbdbd);
-        opacity: 1;
+        opacity: 0.5;
 
         @apply(--paper-toggle-button-unchecked-button);
       }
