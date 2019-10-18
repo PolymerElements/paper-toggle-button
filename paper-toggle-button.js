@@ -129,8 +129,16 @@ Polymer({
       }
 
       :host([disabled]) .toggle-bar {
-        background-color: #000;
+        background-color: var(--paper-toggle-button-unchecked-bar-color, #000);
         opacity: 0.12;
+
+        @apply(--paper-toggle-button-unchecked-bar);
+      }
+
+      :host([checked][disabled]) .toggle-bar {
+        background-color: var(--paper-toggle-button-checked-bar-color, #000);
+        
+        @apply(--paper-toggle-button-checked-bar);
       }
 
       :host([checked]) .toggle-button {
@@ -152,8 +160,16 @@ Polymer({
       }
 
       :host([disabled]) .toggle-button {
-        background-color: #bdbdbd;
+        background-color: var(--paper-toggle-button-unchecked-button-color, #bdbdbd);
         opacity: 1;
+
+        @apply(--paper-toggle-button-unchecked-button);
+      }
+
+      :host([checked][disabled]) .toggle-button {
+        background-color: var(--paper-toggle-button-checked-button-color, #bdbdbd);
+        
+        @apply(--paper-toggle-button-checked-button);
       }
 
       .toggle-ink {
